@@ -144,7 +144,7 @@ hr {
 .section-headers {
   display: flex;
   align-items: flex-start;
-  margin-bottom: var(--vspace-1_75);
+  margin-bottom: var(--vspace-2);
   /* margin-bottom: var(--vspace-3); */
   position: relative;
   margin-top: 50px;
