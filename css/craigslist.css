@@ -144,7 +144,8 @@ hr {
 .section-headers {
   display: flex;
   align-items: flex-start;
-  margin-bottom: var(--vspace-3);
+  margin-bottom: var(--vspace-1_75);
+  /* margin-bottom: var(--vspace-3); */
   position: relative;
   margin-top: 50px;
   margin-left: -35px;
@@ -216,7 +217,7 @@ hr {
 
 
 .project .image img {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   height: auto;
   border: none;
@@ -415,7 +416,7 @@ h4 {
   }
 
   .section-headers {
-    margin-bottom: var(--vspace-2_5);
+    margin-bottom: var(--vspace-1_75);
   }
 
   .section-headers .text-display-titles {
