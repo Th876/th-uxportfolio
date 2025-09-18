@@ -138,7 +138,6 @@ hr {
   /* optional, for a classic caption look */
 }
 
-
 /* ------------------------------------------------------------------- 
  * ## section header
  * ------------------------------------------------------------------- */
@@ -225,7 +224,6 @@ hr {
   display: block;
 }
 
-/* The Frustration: Why Sign-In Needs a Fix */
 .project-list {
   padding: 0 30px 0 50px;
   margin-bottom: 20px;
@@ -457,6 +455,26 @@ h4 {
     /* adds side spacing */
   }
 
+  .more-projects .project-cards {
+    flex-direction: column;
+    /* stack vertically */
+    align-items: center;
+    /* center the items */
+    gap: 20px;
+    /* smaller gap for mobile */
+  }
+
+  .more-projects .project-card {
+    flex: 1 1 100%;
+    max-width: 90%;
+    /* prevent images from touching edges */
+  }
+
+  .more-projects .project-image img {
+    width: 100%;
+    height: auto;
+
+  }
 
 }
 
