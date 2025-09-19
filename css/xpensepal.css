@@ -258,10 +258,37 @@ hr {
   border: 1px solid gray;
 }
 
-/* .single-photo {
-  width: auto;
+.image-with-caption {
+  text-align: center;
+  /* Centers the image and caption */
+  margin: 2.5rem 0;
+}
+
+.image-with-caption img {
+  max-width: 100%;
   height: auto;
-} */
+  display: block;
+  margin: 0 auto;
+}
+
+.caption {
+  padding-top: 20px;
+  font-size: 1.5rem;
+  color: #555;
+  margin-top: 1.2rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.image-with-caption {
+  font-size: 1.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  font-style: italic;
+  /* optional, for a classic caption look */
+}
+
 
 figcaption {
   font-size: 1.5rem;
