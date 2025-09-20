@@ -279,6 +279,20 @@ hr {
   width: 100%;
 }
 
+.col-2 {
+  display: flex;
+}
+
+.col-2 img {
+  width: 95%;
+  border: 1px solid gray;
+}
+
+
+.center {
+  text-align: center;
+}
+
 /* #cl-hi-fi {
   max-width: 100%;
   height: auto;
