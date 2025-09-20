@@ -253,29 +253,37 @@ hr {
   height: auto;
 }
 
-#fig-6 {
-  margin-top: -40px;
-}
-
 .michael {
   margin-top: -40px;
 }
 
-.card-sorting {
-  width: 1500px;
+#card-sorting {
+  width: 1100px;
 }
 
+#fig-2-3 {
+  text-align: center;
+  margin-top: -8px;
+}
 
 .user-flow {
   width: 90%;
   margin: 0 auto;
 }
 
-#cl-hi-fi {
+.x-hi-fi-img {
+  width: 1050px;
+}
+
+#x-hi-fi-caption {
+  width: 100%;
+}
+
+/* #cl-hi-fi {
   max-width: 100%;
   height: auto;
   display: block;
-}
+} */
 
 .two-photos {
   display: grid;
@@ -323,7 +331,7 @@ hr {
 
 #empathy_border {
   border: 1px solid gray;
-  width: 50%;
+  width: 70%;
 }
 
 /* #flow_border {
@@ -332,6 +340,7 @@ hr {
 
 #style-border {
   border: 1px solid gray;
+  width: 1000px;
 }
 
 footer {
@@ -354,11 +363,6 @@ h4 {
 
 .cl-prototype {
   display: block;
-  margin: 0 auto;
-}
-
-.style-guide {
-  width: 80%;
   margin: 0 auto;
 }
 
@@ -457,8 +461,8 @@ h4 {
 }
 
 .more-projects .project-image img {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 12px;
