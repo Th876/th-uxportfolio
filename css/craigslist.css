@@ -135,7 +135,6 @@ hr {
   margin-top: 0.5rem;
   line-height: 1.4;
   font-style: italic;
-  /* optional, for a classic caption look */
 }
 
 /* ------------------------------------------------------------------- 
@@ -239,11 +238,24 @@ hr {
   width: 60%;
 }
 
+.col-2 {
+  display: flex;
+}
+
+.col-2 img {
+  width: 95%;
+  border: 1px solid gray;
+}
+
+
+.center {
+  text-align: center;
+}
 
 .persona {
   width: 80%;
   margin: 0 auto;
-  border: 1px solid #000;
+  border: 1px solid gray;
 }
 
 .user-flow {
@@ -256,15 +268,6 @@ hr {
   height: auto;
   display: block;
 }
-
-#link {
-  color: #800080;
-}
-
-#link:visited {
-  color: #4B004B;
-}
-
 
 footer {
   text-align: left;

@@ -190,9 +190,8 @@ hr {
   margin-bottom: 50px;
 }
 
-
 .project .image img {
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
   height: auto;
   border: none;
@@ -212,15 +211,60 @@ hr {
 }
 
 #analysis {
-  width: 80%;
+  width: 50%;
+}
+
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem;
+  margin-top: 40px;
+  align-items: start;
+}
+
+.two-column-grid img {
+  width: 89%;
+  height: auto;
+  /* display: block; */
 }
 
 
-.persona {
-  width: 80%;
-  margin: 0 auto;
-  border: 1px solid #000;
+/* User personas */
+.persona-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
 }
+
+.persona-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.persona-row.center {
+  justify-content: center;
+}
+
+.persona img {
+  max-width: 520px;
+  height: auto;
+}
+
+#fig-6 {
+  margin-top: -40px;
+}
+
+.michael {
+  margin-top: -40px;
+}
+
+.card-sorting {
+  width: 1500px;
+}
+
 
 .user-flow {
   width: 90%;
@@ -233,29 +277,12 @@ hr {
   display: block;
 }
 
-#link {
-  color: #800080;
-}
-
-#link:visited {
-  color: #4B004B;
-}
-
 .two-photos {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-left: 30px;
   margin-top: 40px;
-}
-
-.x-table {
-  width: 90%;
-}
-
-.x-barchart {
-  width: 92%;
-  border: 1px solid gray;
 }
 
 .image-with-caption {
@@ -289,15 +316,23 @@ hr {
   /* optional, for a classic caption look */
 }
 
-
-figcaption {
-  font-size: 1.5rem;
-  text-align: left;
-  color: #555;
-  margin-top: 8px;
-  line-height: 1.4;
+#border {
+  border: 1px solid gray;
+  width: 91%;
 }
 
+#empathy_border {
+  border: 1px solid gray;
+  width: 50%;
+}
+
+/* #flow_border {
+  border: 1px solid gray;
+} */
+
+#style-border {
+  border: 1px solid gray;
+}
 
 footer {
   text-align: left;
