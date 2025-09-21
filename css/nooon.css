@@ -210,9 +210,7 @@ hr {
     line-height: 1.6;
 }
 
-/* #analysis {
-    width: 50%;
-} */
+
 
 #inspos {
     width: 98%;
@@ -261,8 +259,29 @@ hr {
     margin-top: -40px;
 }
 
-#card-sorting {
-    width: 1100px;
+#old-nooon {
+    width: 1040px;
+    margin-top: 50px;
+}
+
+#lo-fi {
+    width: 1050px;
+    margin-top: 50px;
+}
+
+#mid-fi {
+    width: 1085px;
+    margin-top: 50px;
+}
+
+#nooon-style-guide {
+    width: 1085px;
+    margin-top: 50px;
+}
+
+#nooon-hi-fi {
+    width: 1085px;
+    margin-top: 50px;
 }
 
 #fig-2-3 {
