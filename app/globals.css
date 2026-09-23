@@ -123,6 +123,11 @@ body {
     scroll-behavior: auto;
   }
 
+  .motion-rise {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   *,
   *::before,
   *::after {

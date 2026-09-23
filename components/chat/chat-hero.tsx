@@ -147,7 +147,7 @@ export function ChatHero() {
   return (
     <LazyMotion features={domAnimation}>
       <section
-        className={`relative mx-auto flex w-full max-w-content flex-col px-5 sm:px-6 ${
+        className={`relative mx-auto flex w-full min-w-0 max-w-content flex-col px-5 sm:px-6 ${
           started
             ? "pt-8 pb-16"
             : "min-h-[calc(100svh-7.5rem)] justify-center py-10"
@@ -161,7 +161,7 @@ export function ChatHero() {
         />
 
         {started ? (
-          <div className="mx-auto flex w-full max-w-[680px] flex-col gap-4">
+          <div className="mx-auto flex w-full min-w-0 max-w-[680px] flex-col gap-4">
             <div role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation">
               <MineBubble appear>
                 <h1 className="text-[1em] leading-[1.6] font-normal tracking-normal">{introMessage}</h1>
@@ -210,8 +210,8 @@ export function ChatHero() {
                 <span className="relative inline-block px-1 whitespace-nowrap">
                   <m.span
                     aria-hidden="true"
-                    className="absolute inset-0 origin-left bg-tint"
-                    initial={reduced ? { scaleX: 1 } : { scaleX: 0 }}
+                    className="motion-rise absolute inset-0 origin-left bg-tint"
+                    initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.48, ease: easeOut }}
                   />
@@ -299,8 +299,8 @@ function Rise({
 }) {
   return (
     <m.div
-      className={className}
-      initial={reduced ? false : { opacity: 0, y: 12 }}
+      className={className ? `motion-rise ${className}` : "motion-rise"}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : index * 0.08, ease: easeOut }}
     >
@@ -312,9 +312,9 @@ function Rise({
 function MineBubble({ children, appear = false }: { children: ReactNode; appear?: boolean }) {
   const reduced = useReducedMotion() === true;
   const bubble = (
-    <div className="flex scroll-mt-28 items-start gap-3">
+    <div className="flex min-w-0 scroll-mt-28 items-start gap-3">
       <Avatar size="message" />
-      <div className="max-w-[min(100%,36rem)] rounded-[20px] border border-line bg-surface px-4 py-3 text-left shadow-soft">
+      <div className="min-w-0 max-w-[min(100%,36rem)] flex-1 rounded-[20px] border border-line bg-surface px-4 py-3 text-left shadow-soft">
         {children}
       </div>
     </div>
