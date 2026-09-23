@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
 
@@ -8,8 +9,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-bg">
       <div className="mx-auto flex w-full max-w-content flex-col items-start gap-3 px-5 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
-        <Link href="/" className="text-[15px] font-medium tracking-[-0.01em] text-ink">
-          {site.name}
+        <Link href="/" className="inline-flex shrink-0">
+          <Image
+            src="/images/logo.webp"
+            alt={site.name}
+            width={286}
+            height={192}
+            priority
+            className="h-12 w-auto sm:h-14"
+          />
         </Link>
         <nav
           aria-label="Primary"
