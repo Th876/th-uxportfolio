@@ -1,26 +1,25 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useLayoutEffect, useRef, useState } from "react";
-import { animate, m, useMotionValue, useMotionValueEvent, useReducedMotion } from "motion/react";
+import { animate, m, useMotionValue, useReducedMotion } from "motion/react";
 import { journeyStops } from "@/content/journey";
-import { journeyOutline } from "@/components/journey-outline";
-import { easeInOut, easeOut } from "@/lib/motion";
+import { easeInOut } from "@/lib/motion";
 
-const VIEW_W = 880;
-const VIEW_H = 586;
+const VIEW_W = 1280;
+const VIEW_H = 853;
 const DRAW_SECONDS = 2.4;
 
 const route =
-  "M 277 402 C 241 309, 258 223, 294 172 C 430 69, 559 69, 688 258 C 602 413, 447 395, 342 230";
+  "M 413 651 C 360 500, 360 340, 426 200 C 640 90, 820 220, 887 487 C 980 430, 1040 340, 1089 282 C 900 480, 720 450, 518 303";
 
-const mapStops = [
-  { id: "jamaica", x: 277, y: 402, labelSide: "left" as const },
-  { id: "illinois", x: 294, y: 172, labelSide: "left" as const },
-  { id: "europe", x: 688, y: 258, labelSide: "above" as const },
-  { id: "georgia", x: 342, y: 230, labelSide: "right" as const, pulse: true },
+const pins = [
+  { id: "jamaica", x: 413, y: 651 },
+  { id: "illinois", x: 426, y: 200 },
+  { id: "spain", x: 887, y: 487 },
+  { id: "germany", x: 1089, y: 282 },
+  { id: "georgia", x: 518, y: 303, pulse: true },
 ];
-
-const stopAt = [0, 0.21, 0.62, 1];
 
 export function JourneyMap() {
   const reduced = useReducedMotion() === true;
@@ -35,7 +34,7 @@ export function JourneyMap() {
       const total = path.getTotalLength();
       const distance = Math.min(total, Math.max(0, value * total));
       const point = path.getPointAtLength(distance);
-      const ahead = path.getPointAtLength(Math.min(total, distance + 8));
+      const ahead = path.getPointAtLength(Math.min(total, distance + 12));
       const angle = (Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180) / Math.PI;
       planeRef.current?.setAttribute(
         "transform",
@@ -55,70 +54,67 @@ export function JourneyMap() {
   return (
     <div>
       <div className="w-full overflow-x-auto overflow-y-hidden">
-        <div className="relative min-w-[560px]">
+        <div className="relative min-w-[640px]">
+          <Image
+            src="/images/map.webp"
+            alt=""
+            width={VIEW_W}
+            height={VIEW_H}
+            className="block h-auto w-full"
+          />
           <svg
             viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-            className="block h-auto w-full"
+            className="absolute inset-0 h-full w-full"
             aria-hidden="true"
           >
-            <path d={journeyOutline} fill="currentColor" className="text-ink/40" />
             <mask id={maskId}>
-              <m.path
-                d={route}
-                fill="none"
-                stroke="white"
-                strokeWidth={14}
-                pathLength={progress}
-              />
+              <m.path d={route} fill="none" stroke="white" strokeWidth={18} pathLength={progress} />
             </mask>
             <path
               d={route}
               fill="none"
               className="stroke-decor"
-              strokeWidth={1.75}
+              strokeWidth={3}
               strokeLinecap="round"
-              strokeDasharray="1.4 8"
+              strokeDasharray="2 11"
               mask={`url(#${maskId})`}
             />
             <path ref={setPath} d={route} fill="none" stroke="none" />
-            {mapStops.map((stop, index) => (
-              <StopDot
-                key={stop.id}
-                x={stop.x}
-                y={stop.y}
-                pulse={"pulse" in stop}
-                progress={progress}
-                at={stopAt[index]}
-                reduced={reduced}
-              />
-            ))}
+            {pins
+              .filter((pin) => "pulse" in pin)
+              .map((pin) => (
+                <m.circle
+                  key={pin.id}
+                  cx={pin.x}
+                  cy={pin.y}
+                  r={16}
+                  fill="none"
+                  className="stroke-decor"
+                  strokeWidth={2}
+                  initial={false}
+                  animate={
+                    reduced
+                      ? { scale: 1, opacity: 0.45 }
+                      : { scale: [1, 2.1], opacity: [0.5, 0] }
+                  }
+                  transition={
+                    reduced
+                      ? { duration: 0 }
+                      : { duration: 2.2, repeat: Infinity, ease: "easeOut", delay: DRAW_SECONDS }
+                  }
+                  style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                />
+              ))}
             <g ref={planeRef}>
               <path
-                d="M 9 0 L -7 -5 L -3.5 0 L -7 5 Z"
+                d="M 14 0 L -11 -8 L -5 0 L -11 8 Z"
                 fill="none"
                 className="stroke-decor"
-                strokeWidth={1.5}
+                strokeWidth={2.25}
                 strokeLinejoin="round"
               />
             </g>
           </svg>
-          {mapStops.map((stop, index) => {
-            const copy = journeyStops.find((item) => item.id === stop.id);
-            if (!copy) return null;
-            return (
-              <StopLabel
-                key={stop.id}
-                place={copy.place}
-                detail={copy.detail}
-                x={stop.x}
-                y={stop.y}
-                side={stop.labelSide}
-                progress={progress}
-                at={stopAt[index]}
-                reduced={reduced}
-              />
-            );
-          })}
         </div>
       </div>
       <ol className="sr-only">
@@ -129,118 +125,5 @@ export function JourneyMap() {
         ))}
       </ol>
     </div>
-  );
-}
-
-function StopDot({
-  x,
-  y,
-  pulse,
-  progress,
-  at,
-  reduced,
-}: {
-  x: number;
-  y: number;
-  pulse: boolean;
-  progress: ReturnType<typeof useMotionValue<number>>;
-  at: number;
-  reduced: boolean;
-}) {
-  const [visible, setVisible] = useState(reduced || at === 0);
-  useMotionValueEvent(progress, "change", (value) => {
-    if (value >= at - 0.015) setVisible(true);
-  });
-
-  return (
-    <g>
-      {pulse ? (
-        <m.circle
-          cx={x}
-          cy={y}
-          r={8}
-          fill="none"
-          className="stroke-decor"
-          strokeWidth={1.25}
-          initial={false}
-          animate={
-            reduced || !visible
-              ? { scale: 1, opacity: visible ? 0.35 : 0 }
-              : { scale: [1, 2.15], opacity: [0.45, 0] }
-          }
-          transition={
-            reduced || !visible
-              ? { duration: 0 }
-              : { duration: 2.2, repeat: Infinity, ease: "easeOut" }
-          }
-          style={{ transformBox: "fill-box", transformOrigin: "center" }}
-        />
-      ) : null}
-      <m.circle
-        cx={x}
-        cy={y}
-        r={pulse ? 5.5 : 4}
-        className="fill-decor"
-        initial={false}
-        animate={visible ? { scale: 1, opacity: 1 } : { scale: 0.6, opacity: 0 }}
-        transition={{ duration: reduced ? 0 : 0.35, ease: easeOut }}
-        style={{ transformBox: "fill-box", transformOrigin: "center" }}
-      />
-    </g>
-  );
-}
-
-function StopLabel({
-  place,
-  detail,
-  x,
-  y,
-  side,
-  progress,
-  at,
-  reduced,
-}: {
-  place: string;
-  detail: string;
-  x: number;
-  y: number;
-  side: "left" | "right" | "above" | "below";
-  progress: ReturnType<typeof useMotionValue<number>>;
-  at: number;
-  reduced: boolean;
-}) {
-  const [visible, setVisible] = useState(reduced || at === 0);
-  useMotionValueEvent(progress, "change", (value) => {
-    if (value >= at - 0.015) setVisible(true);
-  });
-  const along = (x / VIEW_W) * 100;
-  const down = (y / VIEW_H) * 100;
-
-  return (
-    <m.span
-      aria-hidden="true"
-      className={`absolute flex w-[8.75rem] flex-col leading-tight ${
-        side === "left"
-          ? "items-end text-right"
-          : side === "right"
-            ? "items-start text-left"
-            : "items-center text-center"
-      }`}
-      style={
-        side === "right"
-          ? { left: `calc(${along}% + 10px)`, top: `calc(${down}% - 16px)` }
-          : side === "left"
-            ? { right: `calc(${100 - along}% + 10px)`, top: `calc(${down}% - 16px)` }
-            : side === "above"
-              ? { left: `calc(${along}% - 4.375rem)`, top: `calc(${down}% - 42px)` }
-              : { left: `calc(${along}% - 4.375rem)`, top: `calc(${down}% + 12px)` }
-      }
-      initial={false}
-      animate={visible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.6 }}
-      transition={{ duration: reduced ? 0 : 0.35, ease: easeOut }}
-    >
-      <span className="text-[13px] font-medium text-ink">{place}</span>
-      <span className="text-[12px] text-muted">{detail}</span>
-    </m.span>
   );
 }
