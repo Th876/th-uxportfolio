@@ -6,4 +6,5 @@ export const site = {
   email: "tayhiggins14@gmail.com",
   linkedin: "https://www.linkedin.com/in/tahayliahiggins/",
   resumePath: "/resume.pdf",
+  templeUrl: "https://templeguide.co",
 } as const;
