@@ -1,0 +1,185 @@
+{
+  "images": [
+    {
+      "src": "images/folio/nooon.png",
+      "dest": "images/cards/nooon",
+      "role": "card"
+    },
+    {
+      "src": "images/folio/fund_flow.png",
+      "dest": "images/cards/fundflow",
+      "role": "card"
+    },
+    {
+      "src": "images/folio/xpensepal.png",
+      "dest": "images/cards/xpensepal",
+      "role": "card"
+    },
+    {
+      "src": "images/folio/nooonfolder/nooon_portfolio_hero_img_new.svg",
+      "dest": "images/work/nooon/hero",
+      "role": "hero"
+    },
+    {
+      "src": "images/folio/nooonfolder/old_noon_website.svg",
+      "dest": "images/work/nooon/before",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/nooonfolder/sofia-boutique-owner.png",
+      "dest": "images/work/nooon/persona-sofia",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/nooonfolder/alex-marketing-manager.png",
+      "dest": "images/work/nooon/persona-alex",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/nooonfolder/elena-influencer.png",
+      "dest": "images/work/nooon/persona-elena",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/nooonfolder/nooon-mid-fi.png",
+      "dest": "images/work/nooon/mid-fi",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/nooonfolder/nooon-style-guide.png",
+      "dest": "images/work/nooon/style-guide",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/nooonfolder/nooon-hi-fisvg.svg",
+      "dest": "images/work/nooon/hi-fi",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/fundflow-coverimg.png",
+      "dest": "images/work/fundflow/hero",
+      "role": "hero"
+    },
+    {
+      "src": "images/folio/gallery/ff-comp-analysis.png",
+      "dest": "images/work/fundflow/competitive-analysis",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-persona1.svg",
+      "dest": "images/work/fundflow/persona-1",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-persona2.svg",
+      "dest": "images/work/fundflow/persona-2",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-persona3.svg",
+      "dest": "images/work/fundflow/persona-3",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-userflow.png",
+      "dest": "images/work/fundflow/user-flow",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-mid-fi.svg",
+      "dest": "images/work/fundflow/mid-fi",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-style-guide.png",
+      "dest": "images/work/fundflow/style-guide",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/ff-hi-fi.svg",
+      "dest": "images/work/fundflow/hi-fi",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xp-banner.png",
+      "dest": "images/work/xpensepal/hero",
+      "role": "hero"
+    },
+    {
+      "src": "images/folio/gallery/xpensePal_comp_analysis.png",
+      "dest": "images/work/xpensepal/competitive-analysis",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/x-empathy-map.png",
+      "dest": "images/work/xpensepal/empathy-map",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xpensepal-bridget.png",
+      "dest": "images/work/xpensepal/persona-bridget",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xpensepal-freddie.png",
+      "dest": "images/work/xpensepal/persona-freddie",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xpensepal-michael.png",
+      "dest": "images/work/xpensepal/persona-michael",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/card-sorting.png",
+      "dest": "images/work/xpensepal/card-sort",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xpensepal_userflow.png",
+      "dest": "images/work/xpensepal/user-flow",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xpensepal-mid-fi-wireframe.png",
+      "dest": "images/work/xpensepal/mid-fi",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/xpensepal-style-guide1.png",
+      "dest": "images/work/xpensepal/style-guide",
+      "role": "content"
+    },
+    {
+      "src": "images/folio/gallery/hi-fi-new1.png",
+      "dest": "images/work/xpensepal/hi-fi",
+      "role": "content"
+    },
+    {
+      "src": "images/me_museum.JPG",
+      "dest": "images/about/portrait",
+      "role": "about"
+    },
+    {
+      "src": "images/volcanic.png",
+      "dest": "images/about/iceland",
+      "role": "icon"
+    },
+    {
+      "src": "images/talk.png",
+      "dest": "images/about/languages",
+      "role": "icon"
+    },
+    {
+      "src": "images/brandenburg-gate.png",
+      "dest": "images/about/berlin",
+      "role": "icon"
+    }
+  ],
+  "videos": [
+    {
+      "src": "video/ff-promo-vid1.mp4",
+      "dest": "video/fundflow"
+    }
+  ]
+}
