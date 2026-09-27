@@ -51,7 +51,7 @@
       "role": "content"
     },
     {
-      "src": "images/folio/nooonfolder/nooon-hi-fisvg.svg",
+      "src": "images/folio/nooonfolder/nooon-hi-fi.png",
       "dest": "images/work/nooon/hi-fi",
       "role": "content"
     },
@@ -154,11 +154,6 @@
       "src": "images/folio/gallery/hi-fi-new1.png",
       "dest": "images/work/xpensepal/hi-fi",
       "role": "content"
-    },
-    {
-      "src": "images/me_museum.JPG",
-      "dest": "images/about/portrait",
-      "role": "about"
     },
     {
       "src": "images/volcanic.png",

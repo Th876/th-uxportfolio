@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp, Send } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
 import { FormEvent, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { AnswerContent, FallbackContent } from "@/components/chat/answer-content";
@@ -154,12 +154,6 @@ export function ChatHero() {
         }`}
         aria-label="Ask Tahaylia"
       >
-        <Send
-          aria-hidden="true"
-          strokeWidth={1.5}
-          className="pointer-events-none absolute top-2 right-5 size-7 text-ink/45 sm:right-6"
-        />
-
         {started ? (
           <div className="mx-auto flex w-full min-w-0 max-w-[680px] flex-col gap-4">
             <div role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation">
@@ -245,7 +239,7 @@ export function ChatHero() {
           <Rise index={3} reduced={reduced || started} className="mt-5 w-full max-w-[560px]">
             <form
               onSubmit={onSubmit}
-              className="flex items-center gap-2 rounded-full border border-line bg-surface py-1.5 pr-1.5 pl-4 shadow-soft focus-within:border-accent"
+              className="flex items-center gap-2 rounded-full border border-line bg-surface py-1.5 pr-1.5 pl-4 shadow-soft"
             >
               <label htmlFor={inputId} className="sr-only">
                 Ask me anything
@@ -314,7 +308,7 @@ function MineBubble({ children, appear = false }: { children: ReactNode; appear?
   const bubble = (
     <div className="flex min-w-0 scroll-mt-28 items-start gap-3">
       <Avatar size="message" />
-      <div className="min-w-0 max-w-[min(100%,36rem)] flex-1 rounded-[20px] border border-line bg-surface px-4 py-3 text-left shadow-soft">
+      <div className="min-w-0 max-w-[min(100%,36rem)] flex-1 rounded-[20px] border border-line bg-surface px-4 py-3 text-left text-[15px] leading-[1.55] shadow-soft">
         {children}
       </div>
     </div>

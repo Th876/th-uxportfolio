@@ -1,0 +1,90 @@
+---
+title: "FundFlow: Redefining loan access for small business owners"
+project: "fundflow"
+subtitle: "Small business lending · Tempe, AZ (Arizona State University)"
+status: "Live prototype"
+timeline: "3 weeks, Nov–Dec 2024"
+role: "UX Designer"
+tools: ["Figma", "FigJam", "Canva", "Adobe Creative Suite"]
+format: field-note
+label: "Concept project"
+location: "Small business lending · Tempe, AZ (Arizona State University)"
+link:
+  label: "View prototype"
+  url: "https://www.figma.com/proto/z4VbgnVqB1pkS79uSWuNXm/Fund-Flow--A-B2B-Loan-Management-Web-App?node-id=1011-94266&p=f&t=FiOB4kjkF9Cj7nH7-1&scaling=scale-down&content-scaling=fixed&page-id=965%3A82934&starting-point-node-id=1011%3A94062"
+hero: "/images/work/fundflow/ff-hero.png"
+heroAlt: "FundFlow web app mockup"
+glance:
+  - { label: "Role", value: "UX Designer" }
+  - { label: "Timeline", value: "3 weeks, Nov–Dec 2024" }
+  - { label: "Team", value: "4-person UX team" }
+  - { label: "Tools", value: "Figma, FigJam, Canva, Adobe Creative Suite" }
+tldr:
+  background: "Small business owners face real barriers getting loans approved, and the tools meant to help them often make it worse."
+  problem: "Complex applications, unreliable calculators, and no path for newer businesses to prove they were fundable."
+  approach: "I designed the AI Fund Forecaster and a loan-tracking dashboard, then iterated based on usability testing with real small business owners."
+  outcome: "Simplified the application flow, gave owners a fairer way to prove fundability, and fixed two friction points usability testing surfaced."
+stats:
+  - { value: "5", label: "Small business owner interviews" }
+  - { value: "3", label: "Personas synthesized from research" }
+  - { value: "4", label: "Usability testers who shaped the final iteration" }
+next: "xpensepal"
+comingSoon: false
+---
+
+## What I built
+
+<WhatChanged>
+  <Change>Designed the AI Fund Forecaster, evaluating funding potential using transaction and repayment data instead of years in business alone</Change>
+  <Change>Simplified the loan application flow after research showed existing applications felt complex and frustrating</Change>
+  <Change>Iterated the prototype after usability testing, adding document upload and clearer comparison guidance</Change>
+</WhatChanged>
+
+## The problem
+
+Small business owners face real barriers getting loans approved, and the tools meant to help them, application flows, repayment tracking, loan calculators, often make it worse. Competitors like Lendio, Fundera, and QuickBooks Capital all had gaps: complex applications, unreliable calculators, and no real path for newer businesses to prove they were fundable. My team set out to design a platform that simplified loan access and gave owners an honest way to track where they stood.
+
+<Figure src="/images/work/fundflow/ff-user-flow.png" alt="FundFlow user flow from account creation to core loan tools" caption="User flow: account creation to core loan tools" />
+
+## What I learned from users
+
+<Findings>
+  <Finding quote="Loan applications were complex and frustrating, users wanted simple, clear steps." note="simplicity was the actual ask, not more features" />
+  <Finding quote="Owners felt lost in loan tracking, they needed dashboards with reminders, not just a status page." note="tracking needed to feel active, not passive" />
+  <Finding quote="A business's funding potential shouldn't be judged by years in business alone." note="this became the whole reason for the Forecaster" />
+</Findings>
+
+## Key design decisions
+
+<Decision title="Build a forecasting tool that doesn't penalize newer businesses" image="/images/work/fundflow/ff-forecaster-real.png" alt="FundFlow AI Fund Forecaster screen" caption="AI Fund Forecaster">
+
+Interviews surfaced that traditional loan criteria unfairly excluded newer or seasonal businesses that were otherwise financially healthy. I designed the AI Fund Forecaster, a predictive tool using transaction, repayment, and market data to assess funding potential more fairly than "years in business" alone.
+
+</Decision>
+
+<Decision title="Give loan tracking an actual dashboard, not a status page" image="/images/work/fundflow/ff-dashboard.png" alt="FundFlow loan tracking dashboard with reminders" caption="Loan tracking dashboard">
+
+Owners told us they felt lost once a loan was in progress, no reminders, no clear next steps. I designed a tracking dashboard with built-in reminders so owners always knew where they stood and what was next.
+
+</Decision>
+
+<Decision title="Iterate based on what usability testing actually showed" image="/images/work/fundflow/ff-loan-compare.png" alt="FundFlow loan comparison tool with document upload" caption="Comparison tool with document upload">
+
+Testing the prototype with 4 small business owners surfaced two specific gaps: no way to upload supporting documents, and confusing guidance in the loan comparison tool. I updated both directly based on that feedback rather than guessing at fixes.
+
+</Decision>
+
+## Process
+
+<ProcessSteps caption="Research & interviews → personas & journey mapping → wireframes → style guide → high-fidelity prototype → usability testing">
+  <Step icon="research" label="Research & interviews" />
+  <Step icon="synthesis" label="Personas & journey mapping" />
+  <Step icon="wireframe" label="Wireframes" />
+  <Step icon="palette" label="Style guide" />
+  <Step icon="screen" label="High-fidelity prototype" />
+  <Step icon="test" label="Usability testing" />
+</ProcessSteps>
+
+## Reflection
+
+Working on a 4-person team on a 3-week timeline meant decisions had to move fast, there wasn't room for endless iteration, so I leaned hard on the 5 interviews we ran upfront to make sure early decisions were grounded in something real rather than assumptions. The Forecaster was the part I'm proudest of, it came directly from hearing owners describe being judged unfairly by a metric that had nothing to do with whether their business was actually healthy. The gap I'd still want to close is testing the Forecaster concept with real lenders directly, not just small business owners, since its credibility depends on both sides trusting it.

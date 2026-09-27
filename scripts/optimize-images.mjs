@@ -1,4 +1,4 @@
-import { mkdir, readFile, stat } from "node:fs/promises";
+import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -23,7 +23,7 @@ const maxWidths = {
   about: 1600,
 };
 
-const qualities = [78, 75];
+const qualities = [78, 75, 68, 60];
 
 function formatBytes(bytes) {
   if (bytes >= 1024 * 1024) return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
@@ -33,6 +33,7 @@ function formatBytes(bytes) {
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 const rows = [];
 const failures = [];
+const imageMeta = {};
 
 for (const entry of manifest.images) {
   const sourcePath = path.join(originalsDir, entry.src);
@@ -49,8 +50,16 @@ for (const entry of manifest.images) {
     ? entry.crops
     : [{ name: null, left: 0, top: 0, width: null, height: null }];
 
-  const probe = sharp(sourcePath, { density: 144, limitInputPixels: false });
-  const metadata = await probe.metadata();
+  let metadata;
+  try {
+    const probe = sharp(sourcePath, { density: 72, limitInputPixels: false });
+    metadata = await probe.metadata();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    failures.push(`${entry.src} could not be read (${message.split("\n")[0]})`);
+    continue;
+  }
+  const density = metadata.width && metadata.width >= 2400 ? 72 : 192;
 
   if (
     !entry.crops?.length &&
@@ -70,29 +79,33 @@ for (const entry of manifest.images) {
     for (const format of ["webp", "avif"]) {
       const destPath = path.join(publicDir, `${destBase}.${format}`);
       let written = null;
+      const widths = [...new Set([maxWidth, 1600, 1280, 960].filter((width) => width <= maxWidth))];
 
-      for (const quality of qualities) {
-        let pipeline = sharp(sourcePath, { density: 144, limitInputPixels: false });
-        if (crop.width && crop.height) {
-          pipeline = pipeline.extract({
-            left: crop.left,
-            top: crop.top,
-            width: crop.width,
-            height: crop.height,
+      for (const width of widths) {
+        for (const quality of qualities) {
+          let pipeline = sharp(sourcePath, { density, limitInputPixels: false });
+          if (crop.width && crop.height) {
+            pipeline = pipeline.extract({
+              left: crop.left,
+              top: crop.top,
+              width: crop.width,
+              height: crop.height,
+            });
+          }
+          pipeline = pipeline.rotate().resize({
+            width,
+            withoutEnlargement: true,
           });
+
+          if (format === "webp") pipeline = pipeline.webp({ quality });
+          if (format === "avif") pipeline = pipeline.avif({ quality });
+
+          await pipeline.toFile(destPath);
+          const destStat = await stat(destPath);
+          written = { quality, size: destStat.size, width };
+          if (destStat.size <= budget) break;
         }
-        pipeline = pipeline.rotate().resize({
-          width: maxWidth,
-          withoutEnlargement: true,
-        });
-
-        if (format === "webp") pipeline = pipeline.webp({ quality });
-        if (format === "avif") pipeline = pipeline.avif({ quality });
-
-        await pipeline.toFile(destPath);
-        const destStat = await stat(destPath);
-        written = { quality, size: destStat.size };
-        if (destStat.size <= budget) break;
+        if (written.size <= budget) break;
       }
 
       const relativeDest = path.relative(publicDir, destPath);
@@ -108,9 +121,23 @@ for (const entry of manifest.images) {
           `${relativeDest} is ${formatBytes(written.size)} (budget ${formatBytes(budget)} for ${entry.role}). Crop it or lower the source.`,
         );
       }
+
+      if (format === "webp") {
+        const outputMeta = await sharp(destPath).metadata();
+        imageMeta[`/${relativeDest.split(path.sep).join("/")}`] = {
+          width: outputMeta.width ?? maxWidth,
+          height: outputMeta.height ?? maxWidth,
+        };
+      }
     }
   }
 }
+
+await mkdir(path.join(root, "content"), { recursive: true });
+await writeFile(
+  path.join(root, "content", "image-meta.ts"),
+  `export const imageMeta: Record<string, { width: number; height: number }> = ${JSON.stringify(imageMeta, null, 2)};\n`,
+);
 
 console.log("file\told size\tnew size\tquality");
 for (const row of rows) {

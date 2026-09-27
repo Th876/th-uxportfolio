@@ -7,7 +7,7 @@ const navLinkClass =
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 bg-bg">
+    <header className="sticky top-0 z-40 border-b border-line bg-bg">
       <div className="mx-auto flex w-full max-w-content flex-col items-start gap-3 px-5 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
         <Link href="/" className="inline-flex shrink-0">
           <Image
@@ -16,7 +16,7 @@ export function Header() {
             width={286}
             height={192}
             priority
-            className="h-12 w-auto sm:h-14"
+            className="h-10 w-auto sm:h-12"
           />
         </Link>
         <nav
@@ -25,14 +25,14 @@ export function Header() {
         >
           <ul className="flex flex-wrap items-center">
             <li>
-              <Link href="/about" className={navLinkClass}>
+              <Link href="/#about" className={navLinkClass}>
                 About
               </Link>
             </li>
             <li>
-              <Link href="/#work" className={navLinkClass}>
+              <a href="/#work" className={navLinkClass}>
                 Work
-              </Link>
+              </a>
             </li>
             <li>
               <a

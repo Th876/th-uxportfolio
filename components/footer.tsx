@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import { CopyEmail } from "@/components/copy-email";
 import { CurrentYear } from "@/components/current-year";
 
 const footerLinkClass =
@@ -16,7 +15,6 @@ export function Footer() {
           <a href={`mailto:${site.email}`} className={footerLinkClass}>
             {site.email}
           </a>
-          <CopyEmail email={site.email} />
           <a
             href={site.linkedin}
             target="_blank"

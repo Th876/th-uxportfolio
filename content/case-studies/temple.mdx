@@ -1,0 +1,106 @@
+---
+title: "Temple: Turning \"eat healthier\" into a grocery list you can actually shop"
+project: "temple"
+subtitle: "Health & wellness · Suwanee, GA (remote-first)"
+status: "Shipped"
+timeline: "July 2024 – Present"
+role: "UX Researcher & Designer (Independent)"
+tools: ["Figma", "PostHog", "Next.js", "Supabase"]
+format: field-note
+label: "Live Product"
+location: "Health & wellness · Suwanee, GA"
+link:
+  label: "View live site"
+  url: "https://templeguide.co"
+hero: "/images/work/temple/temple-hero.png"
+heroAlt: "Temple app screens on a phone"
+glance:
+  - { label: "Role", value: "UX Researcher & Designer (Independent)" }
+  - { label: "Timeline", value: "July 2024 – Present" }
+  - { label: "Team", value: "Solo" }
+  - { label: "Tools", value: "Figma, PostHog, Next.js, Supabase, Resend" }
+tldr:
+  background: "Temple helps people managing blood sugar, blood pressure, and cholesterol shop for their actual health goals, not just count calories."
+  problem: "A doctor says \"cut sugar,\" and the patient is standing in the cereal aisle with no idea what that means when every box claims to be heart-healthy."
+  approach: "I owned research, design, and the working build myself, landing page, onboarding, and the food scanner."
+  outcome: "Landing conversion nearly doubled, real-world scanner use nearly tripled, and onboarding stalls dropped to zero."
+stats:
+  - { value: "4.1% → 7.8%", label: "Landing page form completion" }
+  - { value: "1.4 → 3.1", label: "Median scans per shopping trip" }
+  - { value: "4 → 0", label: "Users stalling at onboarding" }
+next: "nooon"
+comingSoon: false
+---
+
+## What changed
+
+<WhatChanged>
+  <Change>Landing page conversion nearly doubled: 4.1% → 7.8% form completion after rewriting the hero around what people actually needed</Change>
+  <Change>Real-world scanner use nearly tripled: 1.4 → 3.1 median scans per shopping trip after redesigning the verdict system</Change>
+  <Change>Fixed a stalled onboarding flow: 4 of 6 users stalling at account creation down to zero, by reordering the flow</Change>
+</WhatChanged>
+
+## The problem
+
+Temple helps people focusing on blood sugar, blood pressure, and cholesterol shop for their actual health goals, not just count calories. The gap I kept finding in research: a doctor says "cut sugar," and the patient is standing in the cereal aisle with no idea what that means when every box claims to be heart-healthy. Early testing surfaced three separate breakdowns: a landing page that read as "another wellness app" instead of a real translation tool, an onboarding flow that asked for an account before it had earned any trust, and a food-scanning feature that graded people with a binary "recommended / not recommended" verdict that felt punishing rather than useful.
+
+<BeforeAfter
+  before="/images/work/temple/temple_old_waitlist2.png"
+  after="/images/work/temple/temple_landing_page.png"
+  beforeAlt="Early generic wellness framing of the Temple landing page"
+  afterAlt="Shipped clinic-to-cart Temple landing hero"
+  beforeCaption="Before: generic wellness framing"
+  afterCaption="After: clinic-to-cart hero"
+/>
+
+## What I learned from users
+
+<Findings>
+  <Finding quote="The doctor said cut sugar. Then I'm in the cereal aisle and every box says heart healthy." note="this is the whole problem, in one sentence" />
+  <Finding quote="I don't have one health goal, I have three. Most apps only ask about one." note="the reason goal selection is multi-select, not either/or" />
+  <Finding quote="If the app shames me for pasta, I'll close it. I still wanna enjoy eating." note="this is why the binary verdict had to go" />
+</Findings>
+
+## Key design decisions
+
+<StatCompare before="4.1%" after="7.8%" label="Landing page form completion, sequential A/B test" />
+
+<Decision title={"Make the landing page say \"translates your doctor's orders,\" not \"another wellness app\""}>
+
+A 5-second test on the early version showed almost nobody could name what Temple actually did. I rewrote the hero around the real job, translating clinical advice into a grocery list, and changed the scanner language from "Not recommended" to "Skip it" to match the tone of the product itself. Form completion nearly doubled, from 4.1% to 7.8%, in a sequential A/B test.
+
+</Decision>
+
+<Decision title="Ask for goals before asking for an account" image="/images/work/temple/onboarding.png" alt="Temple onboarding Goals screen with multi-select" caption="Onboarding Goals screen">
+
+Usability testing showed 4 of 6 participants stalling at account creation because they didn't yet understand why Temple needed one. I restructured onboarding so goal selection (multi-select, not one static mode) and allergen filtering came first, with account creation pushed to the last step. Stalls dropped to zero in the next round of testing.
+
+</Decision>
+
+<Decision title="Replace the binary verdict with a three-tier system people would actually use" image="/images/work/temple/scanner.png" alt="Temple scanner result card with Go for it, Watch portions, Skip it verdicts" caption="Scanner result card, three-tier verdict">
+
+The original scanner copied the "recommended / not recommended" pattern competitors use, and it read as judgment, not guidance. People said they'd stop scanning foods they knew they'd eat anyway rather than face a red flag. I designed a three-tier verdict instead, Go for it / Watch portions / Skip it, and tested it against the binary version. Real-world scanning nearly tripled per shopping trip after it shipped, and it became the core interaction in the product.
+
+</Decision>
+
+## Process
+
+I designed in Figma and built simultaneously in Cursor, verifying every screen against the design and testing each change with real users rather than shipping on first pass.
+
+<ProcessSteps>
+  <Step icon="research" label="Research" />
+  <Step icon="sketch" label="Sketches" />
+  <Step icon="wireframe" label="Onboarding wireflow" />
+  <Step icon="build" label="App build" />
+  <Step icon="palette" label="Style guide" />
+  <Step icon="launch" label="Beta launch" />
+</ProcessSteps>
+
+## Reflection
+
+The hardest part of Temple wasn't any single screen, it was knowing when a feature I believed in wasn't one I could deliver responsibly. I wanted Temple to support halal and kosher preferences alongside blood sugar, blood pressure, and cholesterol goals. But verifying a product against either standard requires certification I had no way to confirm at my scale, and guessing would mean false confidence about something tied to someone's faith. So, I removed it, and kept only the preferences I could verify. The same logic applied to the scanner: I kept the three-tier verdict over the industry-standard binary because it was the version people actually used.
+
+Building this solo meant I had to be the check on my own instincts, not just my own advocate. The halal and kosher call is the clearest example: it felt like the right feature until the evidence said otherwise, and I let the evidence win. That's the standard I hold every decision to now, not whether I like it, but whether I can prove it.
+
+<Figure src="/images/work/temple/booth-photo.jpg" alt="Tahaylia running the Temple booth at a community event, recruiting beta testers" caption="Recruiting beta testers in person" size="compact" align="left" />
+

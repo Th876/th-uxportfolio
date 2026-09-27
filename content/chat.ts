@@ -122,7 +122,7 @@ export const chatEntries: ChatEntry[] = [
         type: "paragraph",
         runs: [
           { bold: "Temple" },
-          ", a wellness food guide app that helps people shop for their health goals, like managing blood sugar, blood pressure, or cholesterol. I'm the designer, researcher, and developer: I designed it, built it, and I'm opening it to early users in waves so real feedback shapes every release.",
+          ", a wellness food guide app that helps people shop for their health goals. I designed it, built it, and I'm opening it to early users in waves so real feedback shapes every release.",
         ],
       },
     ],
@@ -152,12 +152,11 @@ export const chatEntries: ChatEntry[] = [
     id: "availability",
     chipLabel: "availability?",
     question: "Availability?",
-    confirm: "[CONFIRM WITH TAHAYLIA]",
     answer: [
       {
         type: "paragraph",
         runs: [
-          "Open to full-time product and UX design roles: Atlanta, hybrid, or remote. Available now.",
+          "Actively looking and ready to start now. Open to product design, UX research, product strategy, and related roles. Metro Atlanta based, open to hybrid, remote, or relocation.",
         ],
       },
     ],

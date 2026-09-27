@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useId, useLayoutEffect, useRef, useState } from "react";
 import { animate, m, useMotionValue, useReducedMotion } from "motion/react";
 import { journeyStops } from "@/content/journey";
-import { easeInOut } from "@/lib/motion";
 
 const VIEW_W = 1280;
 const VIEW_H = 853;
-const DRAW_SECONDS = 2.4;
+const DRAW_SECONDS = 10;
 
 const route =
   "M 413 651 C 360 500, 360 340, 426 200 C 640 90, 820 220, 887 487 C 980 430, 1040 340, 1089 282 C 900 480, 720 450, 518 303";
@@ -30,22 +29,39 @@ export function JourneyMap() {
 
   useLayoutEffect(() => {
     if (!path) return;
+    let heading = 0;
+    let hasHeading = false;
+    let last = performance.now();
     const place = (value: number) => {
+      const now = performance.now();
+      const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
+      last = now;
       const total = path.getTotalLength();
       const distance = Math.min(total, Math.max(0, value * total));
       const point = path.getPointAtLength(distance);
-      const ahead = path.getPointAtLength(Math.min(total, distance + 12));
-      const angle = (Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180) / Math.PI;
+      const behind = path.getPointAtLength(Math.max(0, distance - 64));
+      const ahead = path.getPointAtLength(Math.min(total, distance + 64));
+      const target = (Math.atan2(ahead.y - behind.y, ahead.x - behind.x) * 180) / Math.PI;
+      if (!hasHeading) {
+        heading = target;
+        hasHeading = true;
+      } else {
+        let delta = target - heading;
+        while (delta > 180) delta -= 360;
+        while (delta < -180) delta += 360;
+        const maxTurn = 80 * dt;
+        heading += Math.max(-maxTurn, Math.min(maxTurn, delta));
+      }
       planeRef.current?.setAttribute(
         "transform",
-        `translate(${point.x} ${point.y}) rotate(${angle})`,
+        `translate(${point.x} ${point.y}) rotate(${heading})`,
       );
     };
     place(reduced ? 1 : 0);
     if (reduced) return;
     const controls = animate(progress, 1, {
       duration: DRAW_SECONDS,
-      ease: easeInOut,
+      ease: [0.42, 0.02, 0.58, 0.98],
       onUpdate: place,
     });
     return () => controls.stop();
@@ -53,8 +69,8 @@ export function JourneyMap() {
 
   return (
     <div>
-      <div className="w-full overflow-x-auto overflow-y-hidden">
-        <div className="relative min-w-[640px]">
+      <div className="w-full">
+        <div className="relative">
           <Image
             src="/images/map.webp"
             alt=""

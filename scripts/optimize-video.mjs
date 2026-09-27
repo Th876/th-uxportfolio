@@ -1,6 +1,10 @@
 import { spawnSync } from "node:child_process";
 import { mkdir, readFile, stat } from "node:fs/promises";
+import { createRequire } from "node:module";
 import path from "node:path";
+
+const require = createRequire(import.meta.url);
+const ffmpegStatic = require("ffmpeg-static");
 
 const root = process.cwd();
 const originalsDir = path.join(root, "_originals");
@@ -11,7 +15,7 @@ const manifest = JSON.parse(
 const videoLimit = Math.round(1.5 * 1024 * 1024);
 
 function run(args) {
-  const result = spawnSync("ffmpeg", args, { stdio: "inherit" });
+  const result = spawnSync(ffmpegStatic || "ffmpeg", args, { stdio: "inherit" });
   if (result.error) {
     console.error("ffmpeg is required to encode video. Install it, then re-run.");
     process.exit(1);
@@ -37,6 +41,7 @@ for (const video of manifest.videos ?? []) {
     { crf: 28, webmCrf: 36 },
     { crf: 32, webmCrf: 42 },
     { crf: 36, webmCrf: 48 },
+    { crf: 40, webmCrf: 56 },
   ];
 
   let mp4Size = Infinity;
